@@ -1,0 +1,54 @@
+*{ margin: 0; padding: 0; }
+
+:root { --color: #fff; --background: #141414; }
+li { list-style: none; }
+a { text-decoration: none; }
+body { font-size: 14px; background: var(--background); }
+
+
+
+/* loading */
+.loading-wrap { display: block; z-index: 9999; position: fixed; background: #000; width: 100%; height: 100%; }
+.loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; font-size: 18px; }
+svg {  animation:  rotate 2s linear infinite; display: block; width: 70px; height: 70px; margin-bottom: 20px; }
+svg circle { width: 100%; height: 100%; fill: none; stroke-width: 5px; stroke: #fff; stroke-linecap: round; transform: translate(5px,5px); stroke-dasharray: 440; stroke-dashoffset: 440; animation: animate 4s linear infinite; }
+
+ @keyframes animate {
+    0% { stroke-dashoffset: 440; }
+    50% { stroke-dashoffset: 0; }
+    50.1% { stroke-dashoffset: 880; }
+ }
+
+ @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* header */
+header { border-bottom: 1px solid #363636; width: 100%; height: 80px; }
+
+/* nav */
+nav { z-index: 1; position: fixed; border-right: 1px solid #363636; width: 250px; height: 100vh; top: 0; }
+nav ul { width: 100%; margin-top: 80px; }
+nav ul li { padding: 10px; border-bottom: 1px solid #363636; text-align: center; height: 80px; line-height: 80px; }
+nav ul li a { color: var(--color); }
+nav ul li.active a { display: block; border-bottom: 1px solid #313131; background: #f00; color: #000; width: 230px; height: 80px; }
+nav ul li:nth-of-type(1).active a { background: #f00; }
+nav ul li:nth-of-type(2).active a { background: #ffbb22; }
+nav ul li:nth-of-type(3).active a { background: #04afff; }
+
+/* aside */
+.aside { z-index: 1; position: fixed; border-left: 1px solid #363636; width: 80px; height: 100vh; right: 0; top: 0; }
+
+/* section */
+.section-wrap { overflow-y: scroll; width: calc(100vw - 330px); height: calc(100vh - 160px); /*border: 1px solid rgb(255, 255, 255);*/ position: fixed; left: 250px; }
+.section-wrap::-webkit-scrollbar { width: 0; }
+ 
+
+/* footer */
+footer { position: fixed; border-top: 1px solid #363636; width: 100%; height: 80px; bottom: 0; }
+footer .top-btn { width: 80px; height: 80px; border: 1px solid red; position: absolute; right: 0; bottom: 0; }
+
+.dummy:first-child { border-top: none; }
+.dummy { height: 100%; background: var(--background); border-top: 1px solid #363636; } 

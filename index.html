@@ -5,9 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png"> 
+    <link rel="stylesheet" href="./css/style.css">
     <title>PORTFOLIO</title>
 </head>
 <body>
-    
+    <div id="loading" class="loading-wrap">
+        <div class="loading">
+            <svg>
+                <circle cx="30" cy="30" r="30"></circle>
+            </svg>
+            Loding...
+        </div>
+    </div>
+    <header></header>
+    <nav id="nav">
+        <ul>
+            <li class="active"><a href="#">WORKS</a></li>
+            <li><a href="#">DESIGN</a></li=>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+    </nav>
+    <div id="aside" class="aside"></div>
+    <div id="section" class="section-wrap">
+        <section class="dummy"></section>
+        <section class="dummy"></section>
+        <section class="dummy"></section>
+        <section class="dummy"></section>
+    </div>
+    <footer>
+        <div id="top" class="top-btn">
+            <span class="left"></span>
+            <span class="line"></span>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
 </body>
 </html>
+
+<script>
+    window.onload = () => {
+        setTimeout(() => {
+            document.querySelector('#loading').style.cssText=`
+                transition: opacity 1s linear;
+                opacity : 0;
+                display : none;
+            `;
+        }, 2000);
+
+    }
+
+    const init = () => {
+        navBtn();
+    }
+    // nav
+    const navBtn = () => {
+        let nav = document.querySelectorAll('#nav > ul > li');
+        nav.forEach((v,i) => {
+            nav[i].addEventListener('click', () => {
+                nav.forEach((v,j) => {
+                    nav[j].classList.remove('active');
+                })
+                nav[i].classList.add('active');
+           }) 
+        })
+    }
+
+    init();
+</script>
