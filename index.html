@@ -18,27 +18,121 @@
         </div>
     </div>
     <header></header>
-    <nav id="nav">
+    <nav id="nav" class="nav">
         <ul>
-            <li class="active"><a href="#">WORKS</a></li>
-            <li><a href="#">DESIGN</a></li=>
-            <li><a href="#">CONTACT</a></li>
+            <li class="active"><a href="#"><span>WORKS</span></a></li>
+            <li><a href="#"><span>DESIGN</span></a></li>
+            <li><a href="#"><span>CONTACT</span></a></li>
         </ul>
     </nav>
     <div id="aside" class="aside"> 
+        <div id="changeBg" class="black-white">
+            <img src="./img/littledeep.webp" alt="">
+        </div>
         <div id="top" class="top-btn">
-            <div id="changeBg" class="black-white">
-                <img src="./img/littledeep.webp" alt="">
-            </div>
             <span class="left"></span>
             <span class="line"></span>
         </div>
     </div>
     <div id="section" class="section-wrap">
-        <section class="dummy"></section>
-        <section class="dummy"></section>
-        <section class="dummy"></section>
-        <section class="dummy"></section>
+        <!-- works -->
+        <section id="black" class="box section01">
+            <h1>WORKS</h1>
+            <div>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
+                            <em>1</em>
+                            <span>서울우유</span>
+                            <div class="text-box">
+                                <div>
+                                    <span id="pcLayout">PC</span>
+                                    <span id="mobileLayout">MOBILE</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
+                            <em>2</em>
+                            <span>서울우유</span>
+                            <div class="text-box">
+                                <div>
+                                    <span id="pcLayout">PC</span>
+                                    <span id="mobileLayout">MOBILE</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
+                            <em>3</em>
+                            <span>서울우유</span>
+                            <div class="text-box">
+                                <div>
+                                    <span id="pcLayout">PC</span>
+                                    <span id="mobileLayout">MOBILE</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                            <span>프로젝트 명</span>
+                            <span>프로젝트 링크</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- <section id="black" class="box section02"></section>
+        <section id="black" class="box section03"></section>  -->
     </div>
     <footer>
     </footer>
@@ -60,7 +154,11 @@
 
     const init = () => {
         navBtn();
+        whiteDark();
+        scrollTop();
+        previewImg();
     }
+
     // nav
     const navBtn = () => {
         let nav = document.querySelectorAll('#nav > ul > li');
@@ -72,6 +170,69 @@
                 nav[i].classList.add('active');
            }) 
         })
+    }
+    // scrollTop
+    const scrollTop = () => {
+        let top = document.querySelector('#top');
+        let section = document.querySelector('#section');
+        top.addEventListener('click', () => {
+            section.scrollTo(0,0);
+        })
+    }
+
+    // white & black Mode Change
+    const whiteDark = () => {
+        let index = 1;
+        let changeBg = document.querySelector('#changeBg img');
+        changeBg.addEventListener('click', () => {
+            if( index == 1 ){
+                changeBg.src = "./img/littlesun.webp";
+                document.querySelector('body').classList.add('white');
+                document.querySelector('body').classList.remove('black');
+                index = 0;
+            }else{
+                changeBg.src = "./img/littledeep.webp";
+                document.querySelector('body').classList.remove('white');
+                document.querySelector('body').classList.add('black');
+                index = 1;
+            }
+            
+        })
+    }
+
+    // preview
+    const previewImg = () => {
+        let preview = document.querySelectorAll('#previewImg');   
+        let y = 1;
+        let mOver, mleave;  
+        preview.forEach((v,i) => {  
+            preview[i].addEventListener('mouseover', () => {    
+                let previewHeight = preview[i].height;
+                clearInterval(mleave); 
+                    mOver = setInterval(() => {   
+
+                    if( previewHeight - 320 < y ){
+                        clearInterval(mOver); 
+                    }else{
+                        preview[i].style.top = - y+"px";
+                        y+=10;
+                        
+                    } 
+                }, 100);
+            })   
+ 
+        preview[i].addEventListener('mouseleave', (e) => {   
+            clearInterval(mOver);  
+                mleave = setInterval(() => {   
+                    if( 0 > y ){
+                        clearInterval(mleave); 
+                    }else{ 
+                        preview[i].style.top = - y+"px";
+                        y-=10;   
+                    }   
+                }, 100);
+            })  
+        })   
     }
 
     init();
