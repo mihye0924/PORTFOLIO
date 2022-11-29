@@ -74,11 +74,13 @@ nav ul li:nth-of-type(1).active span::selection { background:  #ff6776; }
 .section-wrap .section01 ul li img { position: absolute; overflow: hidden; width: 100%;  top: 0; object-fit: cover; }
 .section-wrap .section01 ul li a::after { position: absolute; content: '';  bottom: 0; width: 100%; height: 150px; background: linear-gradient(transparent,#000000); z-index: 1; }
 .section-wrap .section01 ul li em { width: 50px; font-family: 'LeferiPoint-BlackA'; position: absolute; bottom: -20px; left: 0; z-index:2; font-size: 65px; }
+.section-wrap .section01 ul li em.waiting { width: 100%; font-size: 45px; bottom: 5px; left: 10px; }
 .section-wrap .section01 ul li:first-child a>span,
 .section-wrap .section01 ul li:first-child .text-box div { left: 45px; }
 .section-wrap .section01 ul li a>span { position: absolute; z-index: 2; bottom: 45px; left: 65px; }  
 .section-wrap .section01 ul li .text-box div { position: absolute; z-index: 3; bottom: 15px; left: 65px; }
 .section-wrap .section01 ul li .text-box span { display: inline-block;  font-size: 12px; padding: 4px 8px; line-height: 15px; height: 15px; border-radius: 5px; border: 1px solid var(--color); }
+.section-wrap .section01 ul li .text-box span:hover { background: var(--color); color: #333; }
 
 /* footer */
 footer { z-index: 2; box-sizing: border-box; position: fixed; border-top: 1px solid #363636; width: 100%; height: 80px; bottom: 0; }
