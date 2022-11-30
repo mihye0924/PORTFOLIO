@@ -41,43 +41,37 @@
             <div>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="https://mihye0924.github.io/SEOULMILK/seoulmilk" target="_blank">
                             <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
                             <em>1</em>
                             <span>서울우유</span>
-                            <div class="text-box">
-                                <div>
-                                    <span id="pcLayout">PC</span>
-                                    <span id="mobileLayout">MOBILE</span>
-                                </div>
-                            </div>
-                        </a>
+                        </a> 
+                        <div class="link-btn">
+                            <span id="pcBtn">PC</span>
+                            <span id="mobileBtn">MOBILE</span>
+                        </div> 
                     </li>
                     <li>
                         <a href="#">
                             <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
                             <em>2</em>
-                            <span>서울우유</span>
-                            <div class="text-box">
-                                <div>
-                                    <span id="pcLayout">PC</span>
-                                    <span id="mobileLayout">MOBILE</span>
-                                </div>
-                            </div>
-                        </a>
+                            <span>서울우유</span>  
+                        </a>  
+                        <div class="link-btn">
+                            <span id="pcBtn">PC</span>
+                            <span id="mobileBtn">MOBILE</span>
+                        </div> 
                     </li>
                     <li>
                         <a href="#">
                             <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
                             <em>3</em>
-                            <span>서울우유</span>
-                            <div class="text-box">
-                                <div>
-                                    <span id="pcLayout">PC</span>
-                                    <span id="mobileLayout">MOBILE</span>
-                                </div>
-                            </div>
+                            <span>서울우유</span>  
                         </a>
+                        <div class="link-btn">
+                            <span id="pcBtn">PC</span>
+                            <span id="mobileBtn">MOBILE</span>
+                        </div> 
                     </li> 
                     <li>
                         <a href="#">
@@ -95,37 +89,120 @@
                 </ul>
             </div>
         </section>
-        <!-- <section id="black" class="box section02"></section>
-        <section id="black" class="box section03"></section>  -->
+        <section id="black" class="box section02"></section>
+        <section id="black" class="box section03"></section> 
     </div>
-    <footer>
-    </footer>
+
+    <footer></footer>
+
+    <div id="pcLayout" class="pc-layout-box">
+        <div class="pc-layout"> 
+            <img src="./img/works/seoulmilk.png" alt="서울우유">
+        </div>
+        <div id="pcLayoutTop" class="top-btn">
+            <span class="left"></span>
+            <span class="line"></span>
+        </div>
+    </div>
+    <div id="mobileLayout" class="mobile-layout-box">
+        <div class="mobile-layout">
+            <img src="./img/mobile_phone.png" alt="모바일폰">
+        </div>
+    </div>
+
+    <div id="cursor">
+        <div class="circle">
+            <div class="circle-inner"></div>
+        </div>
+        <div class="close">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+    </div>
+
     <script src="./js/script.js"></script>
 </body>
 </html>
 
 <script>
-    window.onload = () => {
-        setTimeout(() => {
-            document.querySelector('#loading').style.cssText=`
-                transition: opacity 1s linear;
-                opacity : 0;
-                display : none;
-            `;
-        }, 2000);
-
-    }
-
+    
+    let cursor = document.querySelector('.circle');
+    let closeCursor = document.querySelector('.close');
+    let pcLayoutWindow = document.querySelector('#pcLayout .pc-layout'); 
+    let mobileLayoutWindow = document.querySelector('#mobileLayout .mobile-layout'); 
+    let pcLayoutTop =  document.querySelector('#pcLayoutTop'); 
+ 
     const init = () => {
+        loading();
         navBtn();
         whiteDark();
         scrollTop();
         previewImg();
+        pcLayout();
+        cursorCustom(); 
+        mobileLayout();
     }
 
+    // loading
+    const loading = () => {
+        window.onload = () => {
+            setTimeout(() => {
+                document.querySelector('#loading').style.cssText=`
+                    transition: opacity 1s linear;
+                    opacity : 0;
+                    display : none;
+                `;
+            }, 2000);  
+        }
+    }
+    
+    // cursorCustom
+    const cursorCustom = (e) => { 
+    let aLink = document.querySelectorAll('a');  
+ 
+        // 마우스 좌표
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // el좌표
+        let currentX = 0;
+        let currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY; 
+            tick();  
+        })  
+        aLink.forEach((v,i) => {    
+            aLink[i].addEventListener('mouseover', () => { 
+                cursor.style.cssText=`
+                transition: all 0.3 linear;
+                width:50px;
+                height:50px;
+                `;   
+            }) 
+            aLink[i].addEventListener('mouseleave', () => { 
+                cursor.style.cssText=`
+                transition: all 0.3 linear;
+                width:30px;
+                height:30px;
+                `;
+            }) 
+        })  
+        
+        function tick(){
+            requestAnimationFrame(tick);
+            
+            currentX += (mouseX - currentX - 5) * 0.5;
+            currentY += (mouseY - currentY - 80) * 0.5; 
+            cursor.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            closeCursor.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        } 
+    } 
+    
     // nav
     const navBtn = () => {
-        let nav = document.querySelectorAll('#nav > ul > li');
+        let nav = document.querySelectorAll('#nav > ul > li'); 
         nav.forEach((v,i) => {
             nav[i].addEventListener('click', () => {
                 nav.forEach((v,j) => {
@@ -135,12 +212,16 @@
            }) 
         })
     }
+   
     // scrollTop
     const scrollTop = () => {
         let top = document.querySelector('#top');
         let section = document.querySelector('#section');
         top.addEventListener('click', () => {
             section.scrollTo(0,0);
+        })
+        pcLayoutTop.addEventListener('click', () => {
+            pcLayoutWindow.scrollTo(0,0);
         })
     }
 
@@ -164,7 +245,7 @@
         })
     }
 
-    // preview
+    // preview scrolling mousevoer & mouseleave
     const previewImg = () => {
         let preview = document.querySelectorAll('#previewImg');   
         let y = 1;
@@ -199,5 +280,48 @@
         })   
     }
 
+    // pcLayout
+    const pcLayout = () => {
+        let pcBtn = document.querySelectorAll('#pcBtn');
+        
+        pcBtn.forEach((v,i) => {
+            pcBtn[i].addEventListener('click', () => {
+                pcLayoutWindow.classList.add('show');
+                pcLayoutTop.classList.add('show');
+                cursor.style.display = "none";
+                closeCursor.style.display = "block"; 
+            });
+            pcLayoutWindow.addEventListener('click', () => {
+                pcLayoutWindow.classList.remove('show');
+                pcLayoutTop.classList.remove('show');
+                cursor.style.display = "block";
+                closeCursor.style.display = "none";
+            });
+        })
+        
+        pcLayoutTop.addEventListener('mouseover', () => {
+            cursor.style.display = "block";
+            closeCursor.style.display = "none";
+        })
+        pcLayoutTop.addEventListener('mouseleave', () => {
+            cursor.style.display = "none";
+            closeCursor.style.display = "block";
+        })
+        
+    }
+    
+    // mobileLayout
+    const mobileLayout = () => {
+        let mobileBtn = document.querySelectorAll('#mobileBtn');
+
+        mobileBtn.forEach((v,i) => {
+            mobileBtn[i].addEventListener('click', () => {
+                mobileLayoutWindow.classList.add('show');
+            })
+        })
+    }
+
+    
+    
     init();
 </script>

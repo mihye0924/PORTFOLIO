@@ -8,11 +8,12 @@
 }
 
 :root { --color: #fff; --background: #141414; }
-li { list-style: none; }
-a { text-decoration: none; }
+html { scroll-behavior: smooth; cursor: none; }
 body { font-size: 14px; background: var(--background); }
+a { text-decoration: none; cursor: none; }
 a, span, h1, h2, h3, h4, h5, h6 { color: var(--color); }
-html { scroll-behavior: smooth; }
+li { list-style: none; }
+
 
 /* loading */
 .loading-wrap { display: block; z-index: 9999; position: fixed; color: var(--color); background: #000; width: 100%; height: 100%; }
@@ -31,19 +32,26 @@ svg circle { width: 100%; height: 100%; fill: none; stroke-width: 5px; stroke: v
     100% { transform: rotate(360deg); }
 }
 
+/* cursor */ 
+.circle { z-index: 9999999; will-change: transform; position: fixed; width: 25px; height: 25px; border-radius: 50%; border: 2px solid var(--color); }
+.circle-inner { width: 15px; height: 15px; background: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; }
+.close { display: none; z-index: 9999999; position: fixed; }
+.close .left { border-radius: 5px; transform: rotate(45deg); width: 3px; height: 40px; background: #000; }
+.close .right { border-radius: 5px; position: absolute; top: 0; transform: rotate(-45deg); width: 3px; height: 40px; background: #000; }
+
 /* header */
 header { position: relative; z-index: 2; box-sizing: border-box; border-bottom: 1px solid #363636; width: 100%; height: 80px; }
 
 /* nav */
-nav { background: var(--background) ; box-sizing: border-box; z-index: 1; position: fixed; border-right: 1px solid #363636; width: 250px; height: 100vh; top: 0; }
+nav { background: var(--background) ; box-sizing: border-box; position: fixed; border-right: 1px solid #363636; width: 250px; height: 100vh; top: 0; }
 nav ul { width: 100%; margin-top: 80px; }
-nav ul li { padding: 10px; border-bottom: 1px solid #363636; text-align: center; height: 80px; line-height: 80px; }
-nav ul li a { color: var(--color); background-repeat: no-repeat; width: 230px; height: 80px; }
+nav ul li { display: block; padding: 10px; border-bottom: 1px solid #363636; text-align: center; height: 80px; line-height: 80px; }
+nav ul li a { z-index: -1; display: block; color: var(--color); background-repeat: no-repeat; width: 230px; height: 80px; }
 nav ul li.active a { overflow: hidden;  position: relative; display: block; background: url(../img/seoulmilk.png); background-position-y: 100%; background-position-x: -65px; }
-nav ul li.active span { z-index: 1; position: absolute; display: block; color: #fff; width: 100%; background: #00000066; }
+nav ul li.active a span { position: absolute; left: 0; color: #fff; width: 100%; background: #00000066; }
 nav ul li:nth-of-type(2).active a { background: url(../img/greentea.png); background-position-y: 75%; } 
 nav ul li:nth-of-type(3).active a { background: url(../img/contact.jpg); }
-nav ul li:nth-of-type(1).active span::selection { background:  #ff6776; }
+nav ul li:nth-of-type(1).active a span::selection { background:  #ff6776; }
 
 /* aside */
 .aside { box-sizing: border-box; z-index:3; position: fixed; border-left: 1px solid #363636; width: 80px; height: 100vh; right: 0; top: 0; }
@@ -63,33 +71,53 @@ nav ul li:nth-of-type(1).active span::selection { background:  #ff6776; }
 .section-wrap .section01 {}
 .section-wrap .section01 h1::selection,
 .section-wrap .section01 a::selection,
-.section-wrap .section01 span::selection { background: #ff6776; }
+.section-wrap .section01 em::selection { background: #ff6776; }
+.section-wrap .section01 span::selection,
+.section-wrap .section01 img::selection,
 .section-wrap .section01 h1 { text-align: center; color: #fff; font-size: 48px; padding: 18px 25px; text-align: left; } 
 .section-wrap .section01 ul { display: flex; flex-wrap: wrap; width: 100%; border: 1px solid #363636; border-left: 0; border-right: 0; border-bottom: 0; }
-.section-wrap .section01 ul li { width: calc((100% - 4px)/5); height: 20vw; border-right: 1px solid #363636; border-bottom: 1px solid #363636; }
+.section-wrap .section01 ul li { position: relative; width: calc((100% - 4px)/5); height: 20vw; border-right: 1px solid #363636; border-bottom: 1px solid #363636; }
 .section-wrap .section01 ul li:nth-of-type(n) { border-left: none; }
 .section-wrap .section01 ul li:nth-of-type(5n) { border-right: none; }
 .section-wrap .section01 ul li:nth-child(n+6):nth-child(-n+10)  { border-bottom: none; }
 .section-wrap .section01 ul li a { position: relative; display: block; width: 100%; height: 20vw; overflow: hidden; }
 .section-wrap .section01 ul li img { position: absolute; overflow: hidden; width: 100%;  top: 0; object-fit: cover; }
-.section-wrap .section01 ul li a::after { position: absolute; content: '';  bottom: 0; width: 100%; height: 150px; background: linear-gradient(transparent,#000000); z-index: 1; }
+.section-wrap .section01 ul li a::after { position: absolute; content: '';  bottom: 0; width: 100%; height: 150px; background: linear-gradient(transparent,#00000099); z-index: 1; }
 .section-wrap .section01 ul li em { width: 50px; font-family: 'LeferiPoint-BlackA'; position: absolute; bottom: -20px; left: 0; z-index:2; font-size: 65px; }
 .section-wrap .section01 ul li em.waiting { width: 100%; font-size: 45px; bottom: 5px; left: 10px; }
 .section-wrap .section01 ul li:first-child a>span,
-.section-wrap .section01 ul li:first-child .text-box div { left: 45px; }
-.section-wrap .section01 ul li a>span { position: absolute; z-index: 2; bottom: 45px; left: 65px; }  
-.section-wrap .section01 ul li .text-box div { position: absolute; z-index: 3; bottom: 15px; left: 65px; }
-.section-wrap .section01 ul li .text-box span { display: inline-block;  font-size: 12px; padding: 4px 8px; line-height: 15px; height: 15px; border-radius: 5px; border: 1px solid var(--color); }
-.section-wrap .section01 ul li .text-box span:hover { background: var(--color); color: #333; }
+.section-wrap .section01 ul li:first-child .link-btn { left: 45px; }
+.section-wrap .section01 ul li a>span { position: absolute; z-index: 2; bottom: 45px; left: 65px; } 
+.section-wrap .section01 ul li .link-btn { display: inline-block; position: absolute; z-index: 3; bottom: 13px; left: 65px; }
+.section-wrap .section01 ul li .link-btn span { z-index: 5; display: inline-block;  font-size: 12px; padding: 5px 15px; line-height: 15px; height: 15px; border-radius: 5px; border: 1px solid var(--color); }
+.section-wrap .section01 ul li .link-btn span:hover { background: var(--color); color: #333; }
+
+/* pcLayout */
+.pc-layout { display: none; scroll-behavior: smooth; }
+.pc-layout-box { position: relative; }
+.pc-layout.show { z-index: 10; position: fixed; display: block; overflow-y: auto; display: block; top: 0;  width: 100%; height: 100%; background: #333; }
+.pc-layout.show::-webkit-scrollbar { width: 0; }
+.pc-layout img { display: block; width: 100%; }
+.pc-layout-box .top-btn { display: none; } 
+.pc-layout-box .top-btn.show { display: block; z-index: 15; background: rgba(0, 0, 0, 0.541); position: fixed; right: 30px; bottom: 30px; width: 80px; height: 70px; }
+.pc-layout-box .top-btn .line { background: var(--color); width: 2px; height: 50px; display: block; margin-left: 42px; margin-top: 10px; }
+.pc-layout-box .top-btn .left { background: var(--color); width: 2px; height: 20px; display: block; position: absolute; left: 36px; top: 9px; transform: rotate(35deg); border-radius: 0 0 2px 2px; }
+
+.mobile-layout { po display: none;  }
+.mobile-layout { position: relative; }
+.mobile-layout.show { z-index: 10; position: fixed; display: block; top: 0; width: 100%; height: 100%; background: var(--background);  }
+.mobile-layout.show img { width: 420px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
 /* footer */
-footer { z-index: 2; box-sizing: border-box; position: fixed; border-top: 1px solid #363636; width: 100%; height: 80px; bottom: 0; }
+footer { z-index: 2; box-sizing: border-box; position: fixed; border-top: 1px solid #363636;  width: 100%; height: 80px; bottom: 0; }
 
 .box:first-child { border-top: none; }
-.box { /*height: 100%;*/ background: var(--background); border-top: 1px solid #363636; }  
+.box { height: 100%; background: var(--background); border-top: 1px solid #363636; }  
 
 
 /* white & black */
+body.white .circle { border: 2px solid #000; }
+body.white .circle-inner  { background:  #000; }
 body.white { background: var(--color); }
 body.white .box { background: var(--color); }
 
