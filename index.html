@@ -105,8 +105,15 @@
         </div>
     </div>
     <div id="mobileLayout" class="mobile-layout-box">
-        <div class="mobile-layout">
+        <div class="mobile-layout"> 
+            <div class="mobile-innerbox">
+                <img src="./img/works/seoulmilk_mobile.png" alt="서울우유_모바일">
+            </div>
             <img src="./img/mobile_phone.png" alt="모바일폰">
+        </div>
+        <div id="mobileLayoutTop" class="top-btn">
+            <span class="left"></span>
+            <span class="line"></span>
         </div>
     </div>
 
@@ -317,7 +324,14 @@
         mobileBtn.forEach((v,i) => {
             mobileBtn[i].addEventListener('click', () => {
                 mobileLayoutWindow.classList.add('show');
+                cursor.style.display = "none";
+                closeCursor.style.display = "block"; 
             })
+            mobileLayoutWindow.addEventListener('click', () => { 
+                mobileLayoutWindow.classList.remove('show');
+                cursor.style.display = "block";
+                closeCursor.style.display = "none";
+            });
         })
     }
 

@@ -103,10 +103,13 @@ nav ul li:nth-of-type(1).active a span::selection { background:  #ff6776; }
 .pc-layout-box .top-btn .line { background: var(--color); width: 2px; height: 50px; display: block; margin-left: 42px; margin-top: 10px; }
 .pc-layout-box .top-btn .left { background: var(--color); width: 2px; height: 20px; display: block; position: absolute; left: 36px; top: 9px; transform: rotate(35deg); border-radius: 0 0 2px 2px; }
 
-.mobile-layout { po display: none;  }
-.mobile-layout { position: relative; }
+.mobile-layout { display: none; } 
 .mobile-layout.show { z-index: 10; position: fixed; display: block; top: 0; width: 100%; height: 100%; background: var(--background);  }
-.mobile-layout.show img { width: 420px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.mobile-layout.show>img { width: 420px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.mobile-innerbox { z-index: 15; overflow-y: auto; position: absolute; top: 46.5%; left: 49.7%; transform: translate(-50%,-50%); border: 1px solid red; width: 290px; height: 510px; }
+.mobile-innerbox>img { display: block; width: 100%; }
+.mobile-innerbox::-webkit-scrollbar { width: 5px; background: #fff; }
+.mobile-innerbox::-webkit-scrollbar-thumb { width: 5px; border-radius: 10px; background: rgba(0, 0, 0, 0.397); }
 
 /* footer */
 footer { z-index: 2; box-sizing: border-box; position: fixed; border-top: 1px solid #363636;  width: 100%; height: 80px; bottom: 0; }
