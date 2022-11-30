@@ -52,10 +52,10 @@
                         </div> 
                     </li>
                     <li>
-                        <a href="#">
-                            <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
+                        <a href="https://mihye0924.github.io/PERIPERA/peripera" target="_blank">
+                            <img id="previewImg" src="./img/works/peripera.png" alt="페리페라">
                             <em>2</em>
-                            <span>서울우유</span>  
+                            <span>페리페라</span>  
                         </a>  
                         <div class="link-btn">
                             <span id="pcBtn">PC</span>
@@ -63,10 +63,10 @@
                         </div> 
                     </li>
                     <li>
-                        <a href="#">
-                            <img id="previewImg" src="./img/works/seoulmilk.png" alt="서울우유">
+                        <a href="http://momoran.doitmore.kr/" target="_blank">
+                            <img id="previewImg" src="./img/works/momoran_main.png" alt="모모란위그">
                             <em>3</em>
-                            <span>서울우유</span>  
+                            <span>모모란위그</span>  
                         </a>
                         <div class="link-btn">
                             <span id="pcBtn">PC</span>
@@ -96,7 +96,7 @@
     <footer></footer>
 
     <div id="pcLayout" class="pc-layout-box">
-        <div class="pc-layout"> 
+        <div id="pcImg" class="pc-layout"> 
             <img src="./img/works/seoulmilk.png" alt="서울우유">
         </div>
         <div id="pcLayoutTop" class="top-btn">
@@ -104,16 +104,19 @@
             <span class="line"></span>
         </div>
     </div>
-    <div id="mobileLayout" class="mobile-layout-box">
-        <div class="mobile-layout"> 
-            <div class="mobile-innerbox">
+    <div id="mobileLayout" class="mobile-layout-box"> 
+        <div class="mobile-layout">   
+            <div id="mobileImg" class="mobile-innerbox">
                 <img src="./img/works/seoulmilk_mobile.png" alt="서울우유_모바일">
-            </div>
+            </div> 
+           
             <img src="./img/mobile_phone.png" alt="모바일폰">
         </div>
-        <div id="mobileLayoutTop" class="top-btn">
-            <span class="left"></span>
-            <span class="line"></span>
+        <div class="mobile-outerbox">
+            <div id="mobileLayoutTop" class="top-btn">
+                <span class="left"></span>
+                <span class="line"></span>
+            </div> 
         </div>
     </div>
 
@@ -136,8 +139,10 @@
     let cursor = document.querySelector('.circle');
     let closeCursor = document.querySelector('.close');
     let pcLayoutWindow = document.querySelector('#pcLayout .pc-layout'); 
-    let mobileLayoutWindow = document.querySelector('#mobileLayout .mobile-layout'); 
     let pcLayoutTop =  document.querySelector('#pcLayoutTop'); 
+    let mobileLayout = document.querySelector('#mobileLayout .mobile-layout'); 
+    let mobileLayoutWindow = document.querySelector('#mobileLayout .mobile-innerbox');  
+    let mobileLayoutTop =  document.querySelector('#mobileLayoutTop'); 
  
     const init = () => {
         loading();
@@ -145,9 +150,9 @@
         whiteDark();
         scrollTop();
         previewImg();
-        pcLayout();
+        pc();
+        mobile();
         cursorCustom(); 
-        mobileLayout();
     }
 
     // loading
@@ -230,6 +235,9 @@
         pcLayoutTop.addEventListener('click', () => {
             pcLayoutWindow.scrollTo(0,0);
         })
+        mobileLayoutTop.addEventListener('click', () => {
+            mobileLayoutWindow.scrollTo(0,0);
+        })
     }
 
     // white & black Mode Change
@@ -263,7 +271,7 @@
                 clearInterval(mleave); 
                     mOver = setInterval(() => {   
 
-                    if( previewHeight - 320 < y ){
+                    if( previewHeight - 245 < y ){
                         clearInterval(mOver); 
                     }else{
                         preview[i].style.top = - y+"px";
@@ -288,15 +296,30 @@
     }
 
     // pcLayout
-    const pcLayout = () => {
+    const pc = () => {
         let pcBtn = document.querySelectorAll('#pcBtn');
-        
+        let pcImg = document.querySelector('#pcImg img');
+
         pcBtn.forEach((v,i) => {
             pcBtn[i].addEventListener('click', () => {
                 pcLayoutWindow.classList.add('show');
                 pcLayoutTop.classList.add('show');
                 cursor.style.display = "none";
                 closeCursor.style.display = "block"; 
+                 
+                // pc 버전 상세이미지
+                switch(i) {
+                    case 0:
+                        pcImg.src = "./img/works/seoulmilk.png";
+                        break;
+                    case 1:
+                        pcImg.src = "./img/works/peripera.png";
+                        break;
+                    case 2:
+                        pcImg.src = "./img/works/momoran.png";
+                        break;
+                }
+
             });
             pcLayoutWindow.addEventListener('click', () => {
                 pcLayoutWindow.classList.remove('show');
@@ -318,24 +341,44 @@
     }
     
     // mobileLayout
-    const mobileLayout = () => {
-        let mobileBtn = document.querySelectorAll('#mobileBtn');
+    const mobile = () => {
+        let mobileBtn = document.querySelectorAll('#mobileBtn'); 
+        let mobileImg = document.querySelector('#mobileImg img');
 
         mobileBtn.forEach((v,i) => {
             mobileBtn[i].addEventListener('click', () => {
-                mobileLayoutWindow.classList.add('show');
+                mobileLayout.classList.add('show');
+                mobileLayoutTop.classList.add('show');
                 cursor.style.display = "none";
                 closeCursor.style.display = "block"; 
+
+                // mobile 버전 상세이미지
+                switch(i) {
+                case 0:
+                    mobileImg.src = "./img/works/seoulmilk_mobile.png"; 
+                    break;
+                case 1:
+                    mobileImg.src = "./img/works/peripera_mobile.png";    
+                }
+
             })
-            mobileLayoutWindow.addEventListener('click', () => { 
-                mobileLayoutWindow.classList.remove('show');
+            mobileLayout.addEventListener('click', () => { 
+                mobileLayout.classList.remove('show');
+                mobileLayoutTop.classList.remove('show');
                 cursor.style.display = "block";
                 closeCursor.style.display = "none";
             });
         })
+
+        mobileLayoutTop.addEventListener('mouseover', () => {
+            cursor.style.display = "block";
+            closeCursor.style.display = "none";
+        })
+        mobileLayoutTop.addEventListener('mouseleave', () => {
+            cursor.style.display = "none";
+            closeCursor.style.display = "block";
+        })
     }
 
-    
-    
     init();
 </script>
